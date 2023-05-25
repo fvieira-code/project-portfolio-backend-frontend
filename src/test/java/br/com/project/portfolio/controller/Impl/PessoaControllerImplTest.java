@@ -4,7 +4,7 @@ import br.com.project.portfolio.model.Pessoa;
 import br.com.project.portfolio.model.Projeto;
 import br.com.project.portfolio.service.PessoaService;
 import br.com.project.portfolio.service.ProjetoService;
-import br.com.project.portfolio.utils.AbstractTest;
+import br.com.project.portfolio.utils.AbstractTestUtils;
 import br.com.project.portfolio.utils.PessoaTestUtils;
 import br.com.project.portfolio.utils.ProjetoTestUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -89,7 +89,7 @@ class PessoaControllerImplTest {
                 .andReturn();
         var response = result.getResponse();
         String jsonResponse = response.getContentAsString();
-        assertEquals(AbstractTest.mapToJson(entityPessoa.get(0
+        assertEquals(AbstractTestUtils.mapToJson(entityPessoa.get(0
 
 
         )), jsonResponse);
@@ -100,7 +100,7 @@ class PessoaControllerImplTest {
     @DisplayName("Create pessoa")
     void createPessoa() throws Exception {
         when(pessoaService.savePessoa(any())).thenReturn(pessoa);
-        String content = AbstractTest.mapToJson(pessoa);
+        String content = AbstractTestUtils.mapToJson(pessoa);
         MvcResult result = mockMvc.perform(
                         post("/api/v1/project/portfolio/pessoas")
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -115,7 +115,7 @@ class PessoaControllerImplTest {
     void updatePessoa() throws Exception {
         when(pessoaService.updatePessoa(anyLong(), anyObject())).thenReturn(pessoa);
 
-        String content = AbstractTest.mapToJson(pessoa);
+        String content = AbstractTestUtils.mapToJson(pessoa);
 
         MvcResult result = mockMvc.perform(
                         put("/api/v1/project/portfolio/pessoas/{id}", ID)
@@ -164,7 +164,7 @@ class PessoaControllerImplTest {
                 .andReturn();
         var response = result.getResponse();
         String jsonResponse = response.getContentAsString();
-        assertEquals(AbstractTest.mapToJson(PessoaTestUtils.pessoaEntityCreator()), jsonResponse);
+        assertEquals(AbstractTestUtils.mapToJson(PessoaTestUtils.pessoaEntityCreator()), jsonResponse);
         assertEquals(response.getStatus(), HttpServletResponse.SC_OK);
     }
 
@@ -181,7 +181,7 @@ class PessoaControllerImplTest {
         var response = result.getResponse();
 
         String jsonResponse = response.getContentAsString();
-        assertEquals(AbstractTest.mapToJson(entityPessoa), jsonResponse);
+        assertEquals(AbstractTestUtils.mapToJson(entityPessoa), jsonResponse);
         assertEquals(response.getStatus(), HttpServletResponse.SC_OK);
     }
 
@@ -197,7 +197,7 @@ class PessoaControllerImplTest {
                 .andReturn();
         var response = result.getResponse();
         String jsonResponse = response.getContentAsString();
-        assertEquals(AbstractTest.mapToJson(entityProjeto), jsonResponse);
+        assertEquals(AbstractTestUtils.mapToJson(entityProjeto), jsonResponse);
         assertEquals(response.getStatus(), HttpServletResponse.SC_OK);
     }
 
@@ -205,7 +205,7 @@ class PessoaControllerImplTest {
     @DisplayName("Post projeto by pessoa")
     void addPessoa() throws Exception {
         when(pessoaService.addPessoa(anyLong(), anyObject())).thenReturn(pessoa);
-        String content = AbstractTest.mapToJson(pessoa);
+        String content = AbstractTestUtils.mapToJson(pessoa);
         MvcResult result = mockMvc.perform(
                         post("/api/v1/project/portfolio/projetos/{idProjeto}/pessoas", ID)
                                 .contentType(MediaType.APPLICATION_JSON)
