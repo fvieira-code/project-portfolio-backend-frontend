@@ -7,27 +7,29 @@ Projeto web java usando spring-boot, servlet, JSP e persistência com banco de d
 * <h1><b>I. Banco de dados: PostgreSQL 15 </b></h1> 
 * BASE DE DADOS:
 
-  CREATE DATABASE "project-portfolio" WITH OWNER = postgres ENCODING = 'UTF8'
-  LC_COLLATE = 'Portuguese_Brazil.1252'
-  LC_CTYPE = 'Portuguese_Brazil.1252'
-  TABLESPACE = pg_default
-  CONNECTION LIMIT = -1
-  IS_TEMPLATE = False;
+	  CREATE DATABASE "project-portfolio" WITH OWNER = postgres ENCODING = 'UTF8'
+	  LC_COLLATE = 'Portuguese_Brazil.1252'
+	  LC_CTYPE = 'Portuguese_Brazil.1252'
+	  TABLESPACE = pg_default
+	  CONNECTION LIMIT = -1
+	  IS_TEMPLATE = False;
 
 * ENTIDADES/TABELAS:
 
-  CREATE TABLE IF NOT EXISTS public.usuarios
-  (
-  id bigint NOT NULL DEFAULT nextval('usuarios_id_seq'::regclass),
-  login character varying(250) COLLATE pg_catalog."default" NOT NULL,
-  senha character varying(250) COLLATE pg_catalog."default" NOT NULL,
-  nome character varying(250) COLLATE pg_catalog."default" NOT NULL,
-  status boolean NOT NULL DEFAULT true,
-  CONSTRAINT pk_usuarios PRIMARY KEY (id)
-  )
-  TABLESPACE pg_default;
 
-=========================================================================================
+
+===============================================================================
+
+	CREATE TABLE IF NOT EXISTS public.usuarios
+	  (
+	  id bigint NOT NULL DEFAULT nextval('usuarios_id_seq'::regclass),
+	  login character varying(250) COLLATE pg_catalog."default" NOT NULL,
+	  senha character varying(250) COLLATE pg_catalog."default" NOT NULL,
+	  nome character varying(250) COLLATE pg_catalog."default" NOT NULL,
+	  status boolean NOT NULL DEFAULT true,
+	  CONSTRAINT pk_usuarios PRIMARY KEY (id)
+	  )
+	  TABLESPACE pg_default;
 
 	CREATE TABLE IF NOT EXISTS public.pessoas
 	(
@@ -39,8 +41,6 @@ Projeto web java usando spring-boot, servlet, JSP e persistência com banco de d
 		CONSTRAINT pk_pessoas PRIMARY KEY (id)
 	)
 	TABLESPACE pg_default;
-
-=========================================================================================
 
 	CREATE TABLE IF NOT EXISTS public.projetos
 	(
